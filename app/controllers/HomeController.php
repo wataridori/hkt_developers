@@ -1,5 +1,8 @@
 <?php
 
+use \Illuminate\Support\Facades\Session;
+use \Illuminate\Support\Facades\Redirect;
+
 class HomeController extends BaseController {
 
 	/*
@@ -17,13 +20,26 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('hello', ['hkt_sdk' => $this->hkt_sdk]);
+		return View::make('hello', ['hkt_sdk' => $this->hkt_sdk, 'current_user_info' => $this->current_user_info]);
 	}
 
-    public function login()
+    public function getLogin()
     {
         $user = $this->hkt_sdk->getUser();
-        var_dump($user);die();
-        // return View::make('hello', ['hkt_sdk' => $hkt_sdk]);
+        if ($user) {
+            Session::put('current_user_info', json_encode($user));
+        } else {
+            Session::put('current_user_info', '');
+        }
+
+        return Redirect::to('/');
+    }
+
+    public function getLogout()
+    {
+        $this->hkt_sdk->logout();
+        Session::put('current_user_info', '');
+
+        return Redirect::to('/');
     }
 }
