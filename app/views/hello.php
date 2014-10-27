@@ -10,7 +10,7 @@ use wataridori\HktSdk\HKT_SDK;
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Laravel PHP Framework</title>
+	<title>Framgia Hyakkaten's Develop Center</title>
 	<style>
 		@import url(//fonts.googleapis.com/css?family=Lato:700);
 
@@ -75,6 +75,6 @@ use wataridori\HktSdk\HKT_SDK;
 
 <footer>
     <hr>
-    <p>Powered by <a href="https://hkt.thangtd.com">Framgia Hyakkaten</a></p>
+    <p>Powered by <a href="http://laravel.com/">Laravel PHP Framework</a> & <a href="https://hkt.thangtd.com">Framgia Hyakkaten</a></p>
 </footer>
 </html>
