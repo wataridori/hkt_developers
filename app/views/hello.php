@@ -67,7 +67,7 @@ use wataridori\HktSdk\HKT_SDK;
                 <br>
                 <br>
                 <br>
-                <a class="btn btn-success btn-lg" href="<?= $hkt_sdk->generateAuthorizeUrl(url('/home/login')) ?>">Sign in through HKT</a>
+                <a class="btn btn-success btn-lg" href="<?= $hkt_sdk->getLoginUrl(url('/home/login')) ?>">Sign in through HKT</a>
             <?php endif; ?>
         </div>
     </div>
