@@ -1,5 +1,7 @@
 <?php
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\HTML;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use wataridori\HktSdk\HKT_SDK;
 /**
  * @var HKT_SDK $hkt_sdk
@@ -47,28 +49,22 @@ use wataridori\HktSdk\HKT_SDK;
     <div class="container my-container">
         <div class="row">
             <h1><span class="text-center text-danger">Welcome to Framgia Hyakkaten's Developer Center</span></h1>
-            <h4><span class="text-center text-info">More things coming soon ...</span></h4>
-            <hr>
-        </div>
-        <div class="row">
-            <h2><span class="text-info">A demo application using HKT SDK</span></h2>
             <?php if ($current_user_info): ?>
-                <div>
+                <div class="row">
                     <span class="text-primary">
-                        <h2>Congratulation, <span class="text-success"><?= $current_user_info['display_name'] ?></span>! You have been logged in!!</h2>
-                        <h3>(<span class="text-success"><?= $current_user_info['email']?></span>)</h3>
+                        <h3>Hello, <span class="text-success"><?= $current_user_info['display_name'] ?></span>
+                            <a class="btn btn-danger btn-sm" href="<?= url('/home/logout') ?>">Sign Out</a></h3>
                     </span>
-                    <br>
-                    <br>
-                    <br>
-                    <a class="btn btn-danger btn-lg" href="<?= url('/home/logout') ?>">Logout</a>
                 </div>
             <?php else: ?>
-                <br>
-                <br>
-                <br>
-                <a class="btn btn-success btn-lg" href="<?= $hkt_sdk->getLoginUrl(url('/home/login')) ?>">Sign in through HKT</a>
+                <a class="btn btn-success btn-sm" href="<?= $hkt_sdk->getLoginUrl(url('/home/login')) ?>">Sign in through HKT</a>
             <?php endif; ?>
+            <hr>
+            <h3>Check the HKT SDK on <a href="https://github.com/wataridori/hkt_sdk" target="_blank">Github!</a></h3>
+        </div>
+
+        <div style="text-align: left" class="text-info">
+            <?= Markdown::render(File::get(app_path() . '/../vendor/wataridori/hkt_sdk/docs/usage.md')); ?>
         </div>
     </div>
 </body>
